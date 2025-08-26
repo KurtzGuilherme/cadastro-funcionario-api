@@ -22,7 +22,7 @@ public class EmpresaController : Controller
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> GetEmpresa([FromQuery] Guid Id)
     {
-        var empresaResponse = await _empresaServico.FindAsync(Id);
+        var empresaResponse = await _empresaServico.BuscarPorIdAsync(Id);
 
         if(empresaResponse == null)
            return NoContent();
@@ -38,7 +38,7 @@ public class EmpresaController : Controller
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> AddEmpresa([FromBody] EmpresaRequest request)
     {
-        await _empresaServico.AddAsync(request);
+        await _empresaServico.AdicionarAsync(request);
 
         return Created();
     }
@@ -50,7 +50,7 @@ public class EmpresaController : Controller
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> DeleteEmpresa([FromBody] Guid id)
     {
-        await _empresaServico.DeleteAsync(id);
+        await _empresaServico.ExcluirAsync(id);
 
         return NoContent();
     }
@@ -62,7 +62,7 @@ public class EmpresaController : Controller
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> UpdateEmpresa(EmpresaRequest request)
     {
-        await _empresaServico.UpdateAsync(request);
+        await _empresaServico.AtualizarAsync(request);
 
         return Accepted();
     }

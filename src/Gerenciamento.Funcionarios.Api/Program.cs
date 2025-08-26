@@ -22,7 +22,7 @@ builder.Services
     .AddValidacao()
     .AddEndpointsApiExplorer()
     .AddSwaggerGen()
-    .AddControllers(o => o.Filters.Add(typeof(ActionValidationAttribute)))
+    .AddControllers()
     .AddNewtonsoftJson();
 
 var app = builder.Build();

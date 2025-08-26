@@ -10,7 +10,11 @@ public class Empresa
     public string CNPJ { get; private set; }
     public IEnumerable<Endereco> Enderecos { get; private set; }
 
-    public Empresa(Guid id, string nome, string cnpj, IEnumerable<Endereco> endereco)
+    public Empresa(
+        Guid id,
+        string nome,
+        string cnpj,
+        IEnumerable<Endereco> endereco)
     {
         Id = id;
         Nome = nome;

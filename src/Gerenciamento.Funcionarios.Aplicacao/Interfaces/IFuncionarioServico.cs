@@ -2,11 +2,12 @@
 using Gerenciamento.Funcionarios.Aplicacao.Models.Responses;
 
 namespace Gerenciamento.Funcionarios.Aplicacao.Interfaces;
+
 public interface IFuncionarioServico
 {
-    Task<FuncionarioResponse?> FindAsync(Guid id);
-    Task<FuncionarioResponse?> FindByCpfjAsync(string cpf);
-    Task AddAsync(FuncionarioRequest funcionario);
-    Task UpdateAsync(FuncionarioRequest funcionario);
-    Task DeleteAsync(Guid id);
+    Task<FuncionarioResponse?> BuscarPorIdAsync(Guid id);
+    Task AdicionarAsync(FuncionarioRequest funcionario);
+    Task AtualizarAsync(FuncionarioRequest funcionario);
+    Task ExcluirAsync(Guid id);
+    Task<FuncionarioResponse?> BuscarPorCpfAsync(string cpf);
 }

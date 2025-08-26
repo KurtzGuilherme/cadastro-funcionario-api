@@ -14,7 +14,7 @@ public class BaseRepositorio<TEntity> : IBaseRepositorio<TEntity> where TEntity 
         _collection = mongoDb.GetCollection<TEntity>(collectionName);
     }
 
-    public async Task<TEntity> FindOneAsync(Guid id)
+    public async Task<TEntity> BuscarPorIdAsync(Guid id)
     {
         var filter = Builders<TEntity>.Filter.Eq("_id", id);
         var result = await _collection.Find(filter).FirstOrDefaultAsync();
@@ -22,19 +22,19 @@ public class BaseRepositorio<TEntity> : IBaseRepositorio<TEntity> where TEntity 
         return result;
     }
 
-    public async Task AddOneAsync(TEntity entity)
+    public async Task AdicionarAsync(TEntity entity)
     {
         await _collection.InsertOneAsync(entity);
     }
 
-    public async Task DeleteByIdAsync(Guid id)
+    public async Task ExcluirPorIdAsync(Guid id)
     {
         var filter = Builders<TEntity>.Filter.Eq("_id", id);
             
         await _collection.DeleteOneAsync(filter);
     }
 
-    public async Task ReplaceOneAsync(Expression<Func<TEntity, bool>> filterExpression, TEntity entity)
+    public async Task AlterarAsync(Expression<Func<TEntity, bool>> filterExpression, TEntity entity)
     {
         await _collection.ReplaceOneAsync(filterExpression, entity);
     }

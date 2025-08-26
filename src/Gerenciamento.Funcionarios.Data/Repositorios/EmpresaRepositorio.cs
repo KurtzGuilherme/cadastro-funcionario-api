@@ -14,7 +14,7 @@ public class EmpresaRepositorio : BaseRepositorio<Empresa>, IEmpresaRepositorio
         _collection = mongoDb.GetCollection<Empresa>(_collectionName);
     }
 
-    public async Task<Empresa?> FindByCnpjAsync(string cnpj)
+    public async Task<Empresa?> BuscarPorCnpjAsync(string cnpj)
     {
         var filter = Builders<Empresa>.Filter
             .Eq(x => x.CNPJ, cnpj);

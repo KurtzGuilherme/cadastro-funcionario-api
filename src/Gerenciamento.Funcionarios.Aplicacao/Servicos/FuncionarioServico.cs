@@ -17,9 +17,9 @@ public class FuncionarioServico : IFuncionarioServico
         _funcionarioRepositorio = funcionarioRepositorio;
     }
 
-    public async Task<FuncionarioResponse?> FindAsync(Guid id)
+    public async Task<FuncionarioResponse?> BuscarPorIdAsync(Guid id)
     {
-        var funcionario = await _funcionarioRepositorio.FindOneAsync(id);
+        var funcionario = await _funcionarioRepositorio.BuscarPorIdAsync(id);
 
         if (funcionario == null)
             return null;
@@ -27,9 +27,9 @@ public class FuncionarioServico : IFuncionarioServico
         return funcionario.ToFuncionarioResponse();
     }
 
-    public async Task<FuncionarioResponse?> FindByCpfjAsync(string cpf)
+    public async Task<FuncionarioResponse?> BuscarPorCpfAsync(string cpf)
     {
-        var funcionario = await _funcionarioRepositorio.FindByCpfAsync(cpf);
+        var funcionario = await _funcionarioRepositorio.BuscarPorCpfAsync(cpf);
 
         if (funcionario == null)
             return null;
@@ -37,25 +37,25 @@ public class FuncionarioServico : IFuncionarioServico
         return funcionario.ToFuncionarioResponse();
     }
 
-    public async Task AddAsync(FuncionarioRequest request)
+    public async Task AdicionarAsync(FuncionarioRequest request)
     {
         var funcionario = request.ToFuncionario();
 
-        await _funcionarioRepositorio.AddOneAsync(funcionario);
+        await _funcionarioRepositorio.AdicionarAsync(funcionario);
     }
 
-    public async Task DeleteAsync(Guid id)
+    public async Task ExcluirAsync(Guid id)
     {
-        await _funcionarioRepositorio.DeleteByIdAsync(id);
+        await _funcionarioRepositorio.ExcluirPorIdAsync(id);
     }
 
-    public async Task UpdateAsync(FuncionarioRequest request)
+    public async Task AtualizarAsync(FuncionarioRequest request)
     {
         var filter = new FilterDefinitionBuilder<Funcionario>()
           .Where(x => x.Id == request.Id);
 
         var funcionarioDominio = request.ToFuncionario();
         
-        await _funcionarioRepositorio.ReplaceOneAsync(_ => filter.Inject(), funcionarioDominio);
+        await _funcionarioRepositorio.AlterarAsync(_ => filter.Inject(), funcionarioDominio);
     }
 }
