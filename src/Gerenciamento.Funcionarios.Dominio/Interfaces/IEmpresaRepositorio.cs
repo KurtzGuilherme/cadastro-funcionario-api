@@ -4,5 +4,5 @@ namespace Gerenciamento.Funcionarios.Dominio.Interfaces;
 
 public interface IEmpresaRepositorio : IBaseRepositorio<Empresa>
 {
-    Task<Empresa?> FindByCnpjAsync(string cnpj);
+    Task<Empresa?> BuscarPorCnpjAsync(string cnpj);
 }

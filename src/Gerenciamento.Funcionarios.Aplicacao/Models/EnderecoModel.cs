@@ -6,7 +6,11 @@ public class EnderecoModel
     public string Estado { get; set; }
     public string CEP { get; set; }
 
-    public EnderecoModel(string rua, string cidade, string estado, string cep)
+    public EnderecoModel(
+        string rua,
+        string cidade,
+        string estado,
+        string cep)
     {
         Rua = rua;
         Cidade = cidade;

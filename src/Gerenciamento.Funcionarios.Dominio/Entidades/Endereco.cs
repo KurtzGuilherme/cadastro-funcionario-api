@@ -7,7 +7,11 @@ public record Endereco
     public string Estado { get; private set; }
     public string CEP { get; private set; }
 
-    public Endereco(string rua, string cidade, string estado, string cep)
+    public Endereco(
+        string rua,
+        string cidade,
+        string estado,
+        string cep)
     {
         Rua = rua;
         Cidade = cidade;

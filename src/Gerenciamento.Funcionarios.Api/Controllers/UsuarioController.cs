@@ -6,4 +6,7 @@ namespace Gerenciamento.Funcionarios.Api.Controllers;
 [ApiController]
 public class UsuarioController : Controller
 {
+
+    
+
 }

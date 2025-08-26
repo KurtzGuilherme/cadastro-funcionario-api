@@ -17,9 +17,10 @@ public class EmpresaServico : IEmpresaServico
         _empresaRepositorio = empresaRepositorio;
     }
 
-    public async Task<EmpresaResponse?> FindByCnpjAsync(string cnpj)
+    public async Task<EmpresaResponse?> BuscarPorCnpjAsync(string cnpj)
     {
-        var empresa = await _empresaRepositorio.FindByCnpjAsync(cnpj);
+        var empresa = await _empresaRepositorio.BuscarPorCnpjAsync(cnpj);
+
 
         if (empresa == null)
             return null;
@@ -27,9 +28,14 @@ public class EmpresaServico : IEmpresaServico
         return empresa.ToEmpresaResponse();
     }
 
-    public async Task<EmpresaResponse?> FindAsync(Guid id)
+    public async Task<EmpresaResponse?> BuscarPorIdAsync(Guid id)
     {
-        var empresaDominio = await _empresaRepositorio.FindOneAsync(id);
+        var empresaDominio = await _empresaRepositorio.BuscarPorIdAsync(id);
+
+        if (empresaDominio == null)
+        {
+            throw new ArgumentException("Deu ruim");
+        }
 
         if (empresaDominio == null)
             return null;
@@ -37,25 +43,25 @@ public class EmpresaServico : IEmpresaServico
         return empresaDominio.ToEmpresaResponse();
     }
 
-    public async Task AddAsync(EmpresaRequest empresa)
+    public async Task AdicionarAsync(EmpresaRequest empresa)
     {
         var empresaDominio = empresa.ToEmpresa();
 
-        await _empresaRepositorio.AddOneAsync(empresaDominio);
+        await _empresaRepositorio.AdicionarAsync(empresaDominio);
     }
 
-    public async Task DeleteAsync(Guid id)
+    public async Task ExcluirAsync(Guid id)
     {
-        await _empresaRepositorio.DeleteByIdAsync(id);
+        await _empresaRepositorio.ExcluirPorIdAsync(id);
     }
 
-    public async Task UpdateAsync(EmpresaRequest request)
+    public async Task AtualizarAsync(EmpresaRequest request)
     {
         var filter = new FilterDefinitionBuilder<Empresa>()
            .Where(x => x.CNPJ == request.CNPJ);
 
         var empresaDominio = request.ToEmpresa();
 
-        await _empresaRepositorio.ReplaceOneAsync(_ => filter.Inject(), empresaDominio);
+        await _empresaRepositorio.AlterarAsync(_ => filter.Inject(), empresaDominio);
     }   
 }

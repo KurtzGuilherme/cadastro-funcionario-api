@@ -34,7 +34,7 @@ public class EmpresaControllerTests
             .Generate();
 
         _autoMock.GetMock<IEmpresaServico>()
-            .Setup(m => m.FindAsync(It.IsAny<Guid>()))
+            .Setup(m => m.BuscarPorIdAsync(It.IsAny<Guid>()))
             .ReturnsAsync(empresaResponse)
             .Verifiable();
 
@@ -59,7 +59,7 @@ public class EmpresaControllerTests
         var idFake = Guid.NewGuid();
 
         _autoMock.GetMock<IEmpresaServico>()
-            .Setup(m => m.FindAsync(It.IsAny<Guid>()))
+            .Setup(m => m.BuscarPorIdAsync(It.IsAny<Guid>()))
             .ReturnsAsync((EmpresaResponse)null);
 
         // Act

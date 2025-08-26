@@ -14,7 +14,7 @@ public class FuncionarioRepositorio : BaseRepositorio<Funcionario>, IFuncionario
         _collection = mongoDb.GetCollection<Funcionario>(_collectionName);
     }
 
-    public async Task<Funcionario?> FindByCpfAsync(string cpf)
+    public async Task<Funcionario?> BuscarPorCpfAsync(string cpf)
     {
         var filter = Builders<Funcionario>.Filter
             .Eq(x => x.CPF, cpf);

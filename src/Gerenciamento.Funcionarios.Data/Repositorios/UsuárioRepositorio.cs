@@ -14,7 +14,7 @@ public class UsuárioRepositorio : BaseRepositorio<Usuario>, IUsuarioRepositorio
         _collection = mongoDb.GetCollection<Usuario>(_collectionName);
     }
 
-    public async Task<Usuario?> FindByEmailAsync(string email)
+    public async Task<Usuario?> BuscarPorEmailAsync(string email)
     {
         var filter = Builders<Usuario>.Filter
             .Eq(x => x.Email, email);
