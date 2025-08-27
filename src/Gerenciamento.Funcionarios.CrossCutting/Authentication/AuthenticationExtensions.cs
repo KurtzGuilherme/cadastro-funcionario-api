@@ -7,9 +7,9 @@ using System.Text;
 namespace Gerenciamento.Funcionarios.CrossCutting.Authentication;
 public static class AuthenticationExtensions
 {
-    public static IServiceCollection AddAuthenticationJwt(this IServiceCollection services, AuthenticationSettings authenticationSettings)
+    public static IServiceCollection AddAuthenticationJwt(this IServiceCollection services, AuthenticationJwt AuthenticationJwt)
     {
-        var key = authenticationSettings.SecretKey;
+        var key = AuthenticationJwt.SecretKey;
 
         services.AddAuthentication(opt =>
         {
@@ -19,8 +19,8 @@ public static class AuthenticationExtensions
         {
             opt.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
             {
-                ValidIssuer = authenticationSettings.Issuer,
-                ValidAudience = authenticationSettings.Audience,
+                ValidIssuer = AuthenticationJwt.Issuer,
+                ValidAudience = AuthenticationJwt.Audience,
                 IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key)),
                 ClockSkew = TimeSpan.Zero,
             };

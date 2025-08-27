@@ -18,7 +18,7 @@ builder.Services
     .AddRepositorios()
     .AddServicos()
     .AddMongo(applicationSettings!.MongoSettings!)
-    .AddAuthenticationJwt(applicationSettings!.AuthenticationSettings!)
+    .AddAuthenticationJwt(applicationSettings!.AuthenticationJwt!)
     .AddValidacao()
     .AddEndpointsApiExplorer()
     .AddSwaggerGen()
