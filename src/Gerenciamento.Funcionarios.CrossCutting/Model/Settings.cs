@@ -2,5 +2,5 @@
 public class Settings
 {
     public MongoSettings? MongoSettings { get; set; } 
-    public AuthenticationSettings? AuthenticationSettings { get; set; }
+    public AuthenticationJwt? AuthenticationJwt { get; set; }
 }

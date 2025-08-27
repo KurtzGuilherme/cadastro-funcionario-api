@@ -1,5 +1,5 @@
 ﻿namespace Gerenciamento.Funcionarios.CrossCutting.Model;
-public class AuthenticationSettings
+public class AuthenticationJwt
 {
     public string? Issuer { get; set; }
     public string? Audience { get; set; }
